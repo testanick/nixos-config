@@ -136,6 +136,7 @@
     	starship
     	steam
     	liquidctl
+    	onlyoffice-bin
     ];
   };
 
