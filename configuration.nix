@@ -200,14 +200,14 @@
   # NVIDIA settings
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
+    powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
-  # List services that you want to enable:
+ # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
