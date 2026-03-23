@@ -1,9 +1,7 @@
-{ config, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
 {
   home.username = "nick";
   home.homeDirectory = "/home/nick";
-
   programs.illogical-impulse = {
     enable = true;
     dotfiles = {
@@ -11,6 +9,18 @@
       kitty.enable = true;
       starship.enable = true;
     };
+  };
+  xdg.configFile."hypr/hypridle.conf" = lib.mkForce {
+    text = ''
+      general {
+          after_sleep_cmd = hyprctl dispatch dpms on
+      }
+      listener {
+          timeout = 600
+          on-timeout = hyprctl dispatch dpms off
+          on-resume = hyprctl dispatch dpms on
+      }
+    '';
   };
   programs.fish = {
     enable = true;
@@ -23,12 +33,10 @@
     '';
   };
   home.file.".config/illogical-impulse/config.json".source = ./illogical-impulse-config.json;
-
   home.packages = with pkgs; [
     firefox
     spotify
   ];
-
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 }
