@@ -18,7 +18,7 @@
       listener {
           timeout = 600
           on-timeout = hyprctl dispatch dpms off
-          on-resume = hyprctl dispatch dpms on
+          on-resume = hyprctl dispatch dpms on && sleep 1 && hyprctl reload
       }
     '';
   };
@@ -32,10 +32,21 @@
       set fish_cursor_visual block
     '';
   };
+  programs.fish.shellAliases = {
+    ll = "ls -la";
+    gs = "git status";
+    rebuild = "sudo nixos-rebuild switch --flake .#";
+    nixos = "cd /etc/nixos";
+  };
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+  };
   home.file.".config/illogical-impulse/config.json".source = ./illogical-impulse-config.json;
   home.packages = with pkgs; [
     firefox
     spotify
+    playerctl
   ];
   home.stateVersion = "24.11";
   programs.home-manager.enable = true;

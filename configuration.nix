@@ -58,10 +58,10 @@
 
 
   # Add this section for Discord environment variables
-  environment.sessionVariables = {
-    # Force Discord to use GPU
-    NIXOS_OZONE_WL = "1";  # Enable Wayland for Electron apps
-  };
+  # environment.sessionVariables = {
+  #   # Force Discord to use GPU
+  #   NIXOS_OZONE_WL = "1";  # Enable Wayland for Electron apps
+  # };
 
   # Set Hyprland as default
   # services.displayManager.defaultSession = "hyprland";
@@ -115,10 +115,10 @@
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       #  thunderbird
-	    (discord.override {
-        withOpenASAR = true;  # Better performance
-        withVencord = false;   # Optional: adds plugins/themes
-      })
+	    # (discord.override {
+     #    withOpenASAR = true;  # Better performance
+     #    withVencord = false;   # Optional: adds plugins/themes
+     #  })
     	spotify
     	helix
   	  # Language servers for different languages:
@@ -139,6 +139,9 @@
     	steam
     	liquidctl
     	onlyoffice-desktopeditors
+    	vesktop
+    	# discord-canary
+    	claude-code
     ];
   };
 
@@ -208,7 +211,7 @@
     powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
-
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" ];
  # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
