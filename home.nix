@@ -74,8 +74,13 @@
       margin-right = 8;
       modules-left   = [ "niri/workspaces" ];
       modules-center = [ "niri/window" ];
-      modules-right  = [ "pulseaudio" "network" "cpu" "memory" "clock" "tray" ];
+      modules-right = [ "pulseaudio" "network" "cpu" "memory" "clock" "tray" "custom/power" ];
 
+      "custom/power" = {
+        format = "⏻";
+        on-click = "wlogout";
+        tooltip-format = "Power menu";
+      };
       "niri/workspaces" = {
         on-click = "activate";
       };
@@ -246,6 +251,7 @@
     swaybg              # wallpaper setter
     xwayland-satellite  # XWayland support for legacy apps under niri
     pavucontrol
+    wlogout
   ];
 
   # ---------------------------------------------------------------------------
